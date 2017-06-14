@@ -18,7 +18,7 @@ router.get('/films?offset=:start&count=:nummer', function(request, response){
 router.get('/films/:filmid', function(request, response){
     res.contentType('application/json');
 
-    db.query('SELECT * FROM film WHERE ', function(error, rows, fields) {
+    db.query('SELECT * FROM `film` WHERE `film_id` = 1', function(error, rows, fields) {
         if (error) {
             res.status(401).json(error);
         } else {
