@@ -9,7 +9,7 @@ app.all('*', function(request, response, next) {
  next();
 })
 
-
+app.use('/api/v1', require('./api'));
 
 app.all('*', function(request, response) {
  response.status(404);
