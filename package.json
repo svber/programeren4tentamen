@@ -1,11 +1,11 @@
 {
-  "name": "wikibook",
+  "name": "programeren4 tentamen",
   "version": "1.0.0",
-  "description": "kookboek",
-  "main": "wikibooks.js",
+  "description": "het tentamen voor programeren 4 jaar 1",
+  "main": "index.js",
   "dependencies": {
-    "chai-http": "^3.0.0",
     "chai": "^3.5.0",
+    "chai-http": "^3.0.0",
     "express": "^4.15.2"
   },
   "devDependencies": {
