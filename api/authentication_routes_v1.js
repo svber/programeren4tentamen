@@ -16,6 +16,10 @@ var auth = require('../authentication/authentication');
 //
 router.post('/login', function(req, res) {
 
+// Geeft een geldig token wanneer de gebruiker 
+// (customer) is ingelogd; anders
+// een duidelijke foutmelding
+
     // Even kijken wat de inhoud is
     console.dir(req.body);
 
