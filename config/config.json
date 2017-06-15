@@ -1,0 +1,7 @@
+{
+    "webPort": "3000",
+    "dbHost": "146.185.130.82",
+    "dbUser": "1008",
+    "dbDatabase": "1008",
+    "secretkey": "avans2000"
+}

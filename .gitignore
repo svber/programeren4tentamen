@@ -3,5 +3,7 @@
 node_modules
 # WebStorm IDE
 .idea
+.sonar/
+coverage/
 # MacOS
 .DS_Store
