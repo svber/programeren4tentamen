@@ -88,14 +88,14 @@ router.post('/rentals/:userid/:inventoryid', function(request, response){
     var userid = request.params.userid;
     var inventory_id = request.params.inventoryid
 
-    var rental_date = request.body.rental_date;
+   
     var customer_id = userid;
     var return_date = request.body.return_date;
     var staff_id = request.body.staff_id;
     
     response.contentType('application/json');
 
-    db.query('INSERT INTO `rental`(`rental_date`, `inventory_id`, `customer_id`, `return_date`, `staff_id`) VALUES ('+rental_date+'),'+inventory_id+','+customer_id+','+return_date+','+staff_id+')', function(error, rows, fields) {
+    db.query('INSERT INTO `rental`(`rental_date`, `inventory_id`, `customer_id`, `return_date`, `staff_id`) VALUES (CURRENT_TIMESTAMP,'+inventory_id+','+customer_id+','+return_date+','+staff_id+')', function(error, rows, fields) {
         if (error) {
             response.status(401).json(error);
         } else {
