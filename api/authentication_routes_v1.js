@@ -45,5 +45,11 @@ router.post('/login', function(req, res) {
 
 });
 
+router.post('/register', function(request, response){
+/*
+hier kan je een account aan maken als je nog geen account hebt
+of je krijgt een duidelijke foutmelding
+*/
+});
 // Hiermee maken we onze router zichtbaar voor andere bestanden. 
 module.exports = router;
