@@ -17,11 +17,13 @@ import java.util.ArrayList;
 import com.example.matthijs.eindopdrachtpr4.R;
 import com.example.matthijs.eindopdrachtpr4.domein.Film;
 import com.example.matthijs.eindopdrachtpr4.service.FilmRequest;
-import nl.avans.android.todos.R;
-import nl.avans.android.todos.domain.ToDo;
-import nl.avans.android.todos.service.ToDoRequest;
 
-import static nl.avans.android.todos.presentation.MainActivity.TODO_DATA;
+import static com.example.matthijs.eindopdrachtpr4.presentatie.MainActivity.FILM_DATA;
+//import nl.avans.android.todos.R;
+//import nl.avans.android.todos.domain.ToDo;
+//import nl.avans.android.todos.service.ToDoRequest;
+
+//import static nl.avans.android.todos.presentation.MainActivity.TODO_DATA;
 
 public class FilmEditActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -77,7 +79,7 @@ public class FilmEditActivity extends AppCompatActivity implements View.OnClickL
 
         // We return our data to the MainActivity for further handling.
         Intent iData = new Intent();
-        iData.putExtra( MainActivity.FILM_DATA, newFilm );
+        iData.putExtra( FILM_DATA, newFilm );
 
         // Tell the caller that everyting is OK.
         setResult( android.app.Activity.RESULT_OK, iData );

@@ -3,7 +3,7 @@
 //
 var express = require('express');
 var router = express.Router();
-
+var db = require('../config/database');
 var auth = require('../authentication/authentication');
 
 //
@@ -50,6 +50,26 @@ router.post('/register', function(request, response){
 hier kan je een account aan maken als je nog geen account hebt
 of je krijgt een duidelijke foutmelding
 */
+console.dir(request.body);
+
+    var customer = request.body;
+    var query = {
+        sql: 'INSERT INTO `customer`(`first_name`, `last_name`, `email`) VALUES (?, ?, ?)',
+        values: [customer.first_name, customer.last_name, customer.email],
+        timeout: 2000 // 2secs
+    };
+
+    console.dir(customer);
+    console.log('Onze query: ' + query.sql);
+
+    response.contentType('application/json');
+    db.query(query, function(error, rows, fields) {
+        if (error) {
+            response.status(401).json(error);
+        } else {
+            response.status(200).json({ result: rows });
+        };
+    });
 });
 // Hiermee maken we onze router zichtbaar voor andere bestanden. 
 module.exports = router;

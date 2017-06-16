@@ -3,6 +3,13 @@ var express = require('express');
 var router = express.Router();
 var db = require('../config/database')
 
+router.get('/info', function(request, response) {
+    response.status(200);
+    response.json({
+        "description": "Info about movies"
+    });
+});
+
 router.get('/films?offset=:start&count=:nummer', function(request, response){
 
 /*
