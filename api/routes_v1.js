@@ -35,15 +35,15 @@ Geeft alle informatie van de film met
 het gegeven filmid, inclusief alle verhuur
 informatie
 */
-    var filmsId = req.params.id;
+    var filmsId = request.params.filmid;
 
-    res.contentType('application/json');
+    response.contentType('application/json');
 
     db.query('SELECT * FROM film WHERE film_id=?', [filmsId], function(error, rows, fields) {
         if (error) {
-            res.status(401).json(error);
+            response.status(401).json(error);
         } else {
-            res.status(200).json({ result: rows });
+            response.status(200).json({ result: rows });
         };
     });
 });
@@ -53,13 +53,13 @@ router.get('/rentals/:userid', function(request, response){
 
     var rentalsId = req.params.id;
 
-    res.contentType('application/json');
+    response.contentType('application/json');
 
     db.query('SELECT * FROM rental WHERE rental_id=?', [rentalsId], function(error, rows, fields) {
         if (error) {
-            res.status(401).json(error);
+            response.status(401).json(error);
         } else {
-            res.status(200).json({ result: rows });
+            response.status(200).json({ result: rows });
         };
     });
 
