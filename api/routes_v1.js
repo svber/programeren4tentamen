@@ -1,20 +1,20 @@
 
 var express = require('express');
 var router = express.Router();
-var db = require('../config/database')
+var db = require('../config/database');
 
-router.get('/films?offset=:start&count=:nummer', function(request, response){
+router.get('/films?offset=:start&count=5', function(request, response){
 
 /*
 Geeft alle informatie van de gevraagde films. Offset en count kunnen als opties worden gegeven. Offset is het startpunt; count is het aantal films vanaf de offset. 
 Voorbeeld: /api/v1/films?offset=50&count=20 retourneert 20 films vanaf index 50.
 */
- var offset = request.params.start;
- var count = request.params.nummer;
+ var offset = request.query.start;
+ var count = request.query.nummer;
 
     response.contentType('application/json');
 
-    db.query('SELECT * FROM film WHERE film_id=?', [filmsId], function(error, rows, fields) {
+    db.query('SELECT * FROM film LIMIT '+offset+', '+count+'', function(error, rows, fields) {
         if (error) {
             response.status(401).json(error);
         } else {
@@ -61,14 +61,62 @@ router.get('/rentals/:userid', function(request, response){
 });
 
 router.post('/rentals/:userid/:inventoryid', function(request, response){
+    /**
+     * als jet niet lukt verander tabel met : ALTER TABLE `rental` CHANGE `rental_date` `rental_date` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP;
+     * en verwijder return date
+     */
+    var userid = request.params.userid;
+    var inventory_id = request.params.inventoryid
 
+    var rental_date = request.body.rental_date;
+    var customer_id = userid;
+    var return_date = request.body.return_date;
+    var staff_id = request.body.staff_id;
+    
+    response.contentType('application/json');
+
+    db.query('INSERT INTO `rental`(`rental_date`, `inventory_id`, `customer_id`, `return_date`, `staff_id`) VALUES (STR_TO_DATE('+rental_date+', %c/%e/%Y %r),'+inventory_id+','+customer_id+',STR_TO_DATE('+return_date+', %c/%e/%Y %r),'+staff_id+')', function(error, rows, fields) {
+        if (error) {
+            response.status(401).json(error);
+        } else {
+            response.status(200).json({ result: rows });
+        };
+    });
 });
 
 router.put('/rentals/:userid/:inventoryid', function(request, response){
+    var userid = request.params.userid;
+    var inventory_id = request.params.inventoryid
 
+    var rental_date = request.body.rental_date;
+    var customer_id = userid;
+    var return_date = request.body.return_date;
+    var staff_id = request.body.staff_id;
+
+    response.contentType('application/json');
+
+    db.query('UPDATE `rental`(`rental_date`, `inventory_id`, `customer_id`, `return_date`, `staff_id`) VALUES (STR_TO_DATE('+rental_date+', %c/%e/%Y %r),'+inventory_id+','+customer_id+',STR_TO_DATE('+return_date+', %c/%e/%Y %r),'+staff_id+')', function(error, rows, fields) {
+        if (error) {
+            response.status(401).json(error);
+        } else {
+            response.status(200).json({ result: rows });
+        };
+    });
 });
 
 router.delete('/rentals/:userid/:inventoryid', function(request, response){
+    var userid = request.params.userid;
+    var inventoryid = request.params.inventoryid
 
+    response.contentType('application/json');
+
+    db.query('DELETE FROM `rental` WHERE `customer_id` = '+ userid +' AND `inventory_id` ='+inventoryid+'', function(error, rows, fields) {
+        if (error) {
+            response.status(401).json(error);
+        } else {
+            response.status(200).json({ result: rows });
+        };
+    });
 });
+
 module.exports = router;
