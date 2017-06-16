@@ -3,7 +3,14 @@ var express = require('express');
 var router = express.Router();
 var db = require('../config/database');
 
-router.get('/films?offset=:start&count=:count', function(request, response){
+router.get('/info', function(request, response) {
+    response.status(200);
+    response.json({
+        "description": "Info about movies"
+    });
+});
+
+router.get('/films?offset=:start&count=:nummer', function(request, response){
 
 /*
 Geeft alle informatie van de gevraagde films. Offset en count kunnen als opties worden gegeven. Offset is het startpunt; count is het aantal films vanaf de offset. 

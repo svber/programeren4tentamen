@@ -11,11 +11,11 @@ import android.view.MenuItem;
 import android.widget.TextView;
 import com.example.matthijs.eindopdrachtpr4.R;
 import com.example.matthijs.eindopdrachtpr4.domein.Film;
-import nl.avans.android.todos.R;
-import nl.avans.android.todos.domain.ToDo;
+//import nl.avans.android.todos.R;
+//import nl.avans.android.todos.domain.ToDo;
 
 import static com.example.matthijs.eindopdrachtpr4.presentatie.MainActivity.FILM_DATA;
-import static nl.avans.android.todos.presentation.MainActivity.TODO_DATA;
+
 
 public class FilmDetailActivity extends AppCompatActivity {
 

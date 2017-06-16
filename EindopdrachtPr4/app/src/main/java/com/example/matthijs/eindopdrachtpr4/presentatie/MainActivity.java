@@ -25,8 +25,8 @@ import com.example.matthijs.eindopdrachtpr4.R;
 import com.example.matthijs.eindopdrachtpr4.domein.Film;
 import com.example.matthijs.eindopdrachtpr4.domein.FilmAdapter;
 import com.example.matthijs.eindopdrachtpr4.service.FilmRequest;
-import nl.avans.android.todos.domain.ToDoAdapter;
-import nl.avans.android.todos.service.ToDoRequest;
+//import nl.avans.android.todos.domain.ToDoAdapter;
+//import nl.avans.android.todos.service.ToDoRequest;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener,
@@ -89,7 +89,7 @@ public class MainActivity extends AppCompatActivity
             // Vul de lijst met ToDos
             //
             Log.d(TAG, "Token gevonden - Films ophalen!");
-            getToDos();
+            getFilms();
         } else {
             //
             // Blijkbaar was er geen token - eerst inloggen dus
@@ -122,7 +122,7 @@ public class MainActivity extends AppCompatActivity
                 Log.v( TAG, "Retrieved Value newFilm is " + newFilm);
 
                 // We need to save our new Film
-                postTodo(newFilm);
+                postFilm(newFilm);
             }
         }
 
@@ -237,7 +237,7 @@ public class MainActivity extends AppCompatActivity
      * @param toDoArrayList
      */
     @Override
-    public void onToDosAvailable(ArrayList<Film> toDoArrayList) {
+    public void onFilmsAvailable(ArrayList<Film> toDoArrayList) {
 
         Log.i(TAG, "We hebben " + toDoArrayList.size() + " items in de lijst");
 
@@ -254,7 +254,7 @@ public class MainActivity extends AppCompatActivity
      * @param film
      */
     @Override
-    public void onToDoAvailable(Film film) {
+    public void onFilmAvailable(Film film) {
         films.add(film);
         filmAdapter.notifyDataSetChanged();
     }
@@ -265,7 +265,7 @@ public class MainActivity extends AppCompatActivity
      * @param message
      */
     @Override
-    public void onToDosError(String message) {
+    public void onFilmsError(String message) {
         Log.e(TAG, message);
         Toast.makeText(getApplicationContext(), message, Toast.LENGTH_LONG).show();
     }
@@ -280,9 +280,9 @@ public class MainActivity extends AppCompatActivity
 
     /**
      * Start the activity to POST a new ToDo to the server.
-     * @param todo
+     * @param film
      */
-    private void postTodo(Film film){
+    private void postFilm(Film film){
         FilmRequest request = new FilmRequest(getApplicationContext(), this);
         request.handlePostToDo(film);
     }
