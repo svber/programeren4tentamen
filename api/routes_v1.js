@@ -51,7 +51,7 @@ informatie
 
 router.get('/rentals/:userid', function(request, response){
 
-    var rentalsId = req.params.id;
+    var rentalsId = request.params.userid;
 
     response.contentType('application/json');
 
