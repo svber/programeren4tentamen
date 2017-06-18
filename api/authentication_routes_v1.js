@@ -27,6 +27,18 @@ router.post('/login', function(req, res) {
     var username = req.body.username;
     var password = req.body.password;
 
+    //email(username) en password uit de database halen
+    db.query('SELECT `email`, `password` FROM `customer` WHERE `customer_id` = 2', function(error, rows, fields) {
+        if (error) {
+           console.dir(error);
+        } else {
+            console.log(rows);
+            //var result = JSON.parse(rows);
+            //console.log(result)
+            var dbUsername = rows[0].email;
+            var dbPassword = rows[0].password
+        };
+    });
     // Dit is een dummy-user - die haal je natuurlijk uit de database.
     // Momenteel zetten we ze als environment variabelen. (Ook op Heroku!)
     var _dummy_username = process.env.APP_USERNAME || "username";
