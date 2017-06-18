@@ -19,7 +19,7 @@ app.use(bodyParser.urlencoded({ 'extended': 'true' })); // parse application/x-w
 app.use(bodyParser.json()); // parse application/json
 app.use(bodyParser.json({ type: 'application/vnd.api+json' })); // parse application/vnd.api+json as json
 
-// Beveilig alle URL routes, tenzij het om /login of /register gaat.
+// Beveilig alle URL routes van rentals.
 app.use('/api/v1/rentals',expressJWT({
     secret: config.secretkey
 }));

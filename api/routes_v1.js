@@ -71,11 +71,11 @@ router.post('/rentals/:userid/:inventoryid', function(request, response){
      * als jet niet lukt verander tabel met : ALTER TABLE `rental` CHANGE `rental_date` `rental_date` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP;
      * en verwijder return date
      */
-    var userid = request.params.userid;
+    var user_id = request.params.userid;
     var inventory_id = request.params.inventoryid
 
    
-    var customer_id = userid;
+    var customer_id = user_id;
     var return_date = request.body.return_date;
     var staff_id = request.body.staff_id;
     
@@ -91,17 +91,17 @@ router.post('/rentals/:userid/:inventoryid', function(request, response){
 });
 
 router.put('/rentals/:userid/:inventoryid', function(request, response){
-    var userid = request.params.userid;
+    var user_id = request.params.userid;
     var inventory_id = request.params.inventoryid
 
     var rental_date = request.body.rental_date;
-    var customer_id = userid;
+    var customer_id = user_id;
     var return_date = request.body.return_date;
     var staff_id = request.body.staff_id;
 
     response.contentType('application/json');
 
-    db.query('UPDATE `rental`(`rental_date`, `inventory_id`, `customer_id`, `return_date`, `staff_id`) VALUES (STR_TO_DATE('+rental_date+', %c/%e/%Y %r),'+inventory_id+','+customer_id+',STR_TO_DATE('+return_date+', %c/%e/%Y %r),'+staff_id+')', function(error, rows, fields) {
+    db.query('UPDATE `rental` SET `rental_date`="'+rental_date+'",`return_date`="'+return_date+'",`staff_id`='+staff_id+' WHERE customer_id = '+user_id+' and inventory_id ='+inventory_id, function(error, rows, fields) {
         if (error) {
             response.status(401).json(error);
         } else {
@@ -111,12 +111,12 @@ router.put('/rentals/:userid/:inventoryid', function(request, response){
 });
 
 router.delete('/rentals/:userid/:inventoryid', function(request, response){
-    var userid = request.params.userid;
+    var user_id = request.params.userid;
     var inventoryid = request.params.inventoryid
 
     response.contentType('application/json');
 
-    db.query('DELETE FROM `rental` WHERE `customer_id` = '+ userid +' AND `inventory_id` ='+inventoryid+'', function(error, rows, fields) {
+    db.query('DELETE FROM `rental` WHERE `customer_id` = '+ user_id +' AND `inventory_id` ='+inventoryid+'', function(error, rows, fields) {
         if (error) {
             response.status(401).json(error);
         } else {
