@@ -20,16 +20,8 @@ app.use(bodyParser.json()); // parse application/json
 app.use(bodyParser.json({ type: 'application/vnd.api+json' })); // parse application/vnd.api+json as json
 
 // Beveilig alle URL routes, tenzij het om /login of /register gaat.
-app.use(expressJWT({
+app.use('/api/v1/rentals',expressJWT({
     secret: config.secretkey
-}).unless({
-    path: [
-        { url: '/api/v1/login', methods: ['POST'] },
-        { url: '/api/v1/info', methods: ['GET'] },
-        { url: '/api/v1/register', methods: ['POST'] },
-        { url: '/api/v1/films?offset=:start&count=:nummer', methods: ['GET']},
-        { url: '/api/v1/films/:filmid', methods: ['GET']}
-    ]
 }));
 
 // configureer de app
