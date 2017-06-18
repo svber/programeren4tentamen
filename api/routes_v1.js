@@ -10,14 +10,13 @@ router.get('/info', function(request, response) {
     });
 });
 
-router.get('/films?offset=:start&count=:nummer', function(request, response){
-
+router.get('/films', function(request, response){
 /*
 Geeft alle informatie van de gevraagde films. Offset en count kunnen als opties worden gegeven. Offset is het startpunt; count is het aantal films vanaf de offset. 
 Voorbeeld: /api/v1/films?offset=50&count=20 retourneert 20 films vanaf index 50.
 */
- var offset = request.query.start;
- var count = request.query.nummer;
+    var offset = request.query.offset || 0;
+    var count = request.query.count || 5;
 
     response.contentType('application/json');
 
@@ -29,20 +28,7 @@ Voorbeeld: /api/v1/films?offset=50&count=20 retourneert 20 films vanaf index 50.
         };
     });
 });
-/*
-router.get('/films', function(request, response){
 
-    response.contentType('application/json');
-
-    db.query('SELECT * FROM film', function(error, rows, fields) {
-        if (error) {
-            response.status(401).json(error);
-        } else {
-            response.status(200).json({ result: rows });
-        };
-    });
-});
-*/
 router.get('/films/:filmid', function(request, response){
 /*
 Geeft alle informatie van de film met
