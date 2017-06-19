@@ -5,6 +5,7 @@ package nl.avans.android.todos.presentation;
  */
 
 import android.content.Intent;
+import android.os.Parcelable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -20,12 +21,16 @@ import java.util.ArrayList;
 
 //import static com.example.matthijs.eindopdrachtpr4.presentatie.MainActivity.FILM_DATA;
 import nl.avans.android.todos.R;
+import nl.avans.android.todos.domain.Customer;
 import nl.avans.android.todos.domain.Film;
 import nl.avans.android.todos.service.FilmRequest;
 
 import static nl.avans.android.todos.presentation.MainActivity.FILM_DATA;
 
-public class FilmEditActivity extends AppCompatActivity implements View.OnClickListener {
+//import static nl.avans.android.todos.presentation.MainActivity.CUSTOMER_DATA;
+//import static nl.avans.android.todos.presentation.MainActivity.FILM_DATA;
+
+public class CustomerEditActivity extends AppCompatActivity implements View.OnClickListener {
 
     private TextView textTitle;
     private TextView textContents;
@@ -37,11 +42,11 @@ public class FilmEditActivity extends AppCompatActivity implements View.OnClickL
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_film_edit);
 
-        textTitle = (TextView) findViewById(R.id.textEditFilmTitle);
-        textContents = (TextView) findViewById(R.id.textEditFilmContents);
+        textTitle = (TextView) findViewById(R.id.textEditCustomerEmail);
+        textContents = (TextView) findViewById(R.id.textEditCustomerPassword);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fabSaveNewFilm);
-        fab.setOnClickListener(this);
+        // FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fabSaveNewCustomer);
+        //fab.setOnClickListener(this);
 
         // See if there's any extras for us.
         // We could use this Activity for both new ToDos
@@ -75,11 +80,11 @@ public class FilmEditActivity extends AppCompatActivity implements View.OnClickL
     @Override
     public void onClick(View v) {
         // Save new ToDo and return to the previous Activity.
-        Film newFilm = new Film(textTitle.getText().toString(), textContents.getText().toString());
+        Customer newCustomer = new Customer(textTitle.getText().toString(), textContents.getText().toString());
 
         // We return our data to the MainActivity for further handling.
         Intent iData = new Intent();
-        iData.putExtra( FILM_DATA, newFilm );
+        iData.putExtra(FILM_DATA, (Parcelable) newCustomer);
 
         // Tell the caller that everyting is OK.
         setResult( android.app.Activity.RESULT_OK, iData );

@@ -14,9 +14,7 @@ import org.json.JSONObject;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 
-/**
- * Deze class vertaalt JSON objecten naar (lijsten van) ToDos.
- */
+
 public class CustomerMapper {
 
     public static final String CUSTOMER_RESULT = "result";
@@ -24,6 +22,7 @@ public class CustomerMapper {
     public static final String CUSTOMER_LASTNAME = "last_name";
     public static final String CUSTOMER_EMAIL = "email";
     public static final String CUSTOMER_STATUS = "create_date";
+    public static final String CUSTOMER_PASSWORD = "password";
 
     /**
      * Map het JSON response op een arraylist en retourneer deze.
@@ -46,6 +45,7 @@ public class CustomerMapper {
                         jsonProduct.getString(CUSTOMER_FIRSTNAME),
                         jsonProduct.getString(CUSTOMER_LASTNAME),
                         jsonProduct.getString(CUSTOMER_EMAIL),
+                        jsonProduct.getString(CUSTOMER_PASSWORD),
                         customerDateTime
                 );
 
