@@ -66,8 +66,8 @@ console.dir(request.body);
 
     var customer = request.body;
     var query = {
-        sql: 'INSERT INTO `customer`(`first_name`, `last_name`, `email`) VALUES (?, ?, ?)',
-        values: [customer.first_name, customer.last_name, customer.email],
+        sql: 'INSERT INTO `customer`(`email`, `password`) VALUES (?, ?)',
+        values: [customer.email, customer.password],
         
     };
 
