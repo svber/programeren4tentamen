@@ -73,7 +73,7 @@ console.dir(request.body);
         
     };
 
-    console.dir(customer);
+    //console.dir(customer);
     console.log('Onze query: ' + query.sql);
 
     response.contentType('application/json');
