@@ -24,7 +24,7 @@ Voorbeeld: /api/v1/films?offset=50&count=20 retourneert 20 films vanaf index 50.
         if (error) {
             response.status(401).json(error);
         } else {
-            response.status(200).json(rows);
+            response.status(200).json({result: rows});
         };
     });
 });

@@ -71,13 +71,14 @@ public class RegisterActivity extends AppCompatActivity {
         });
     }
 
-    private void handleRegister(String email, String password) {
+    private void handleRegister(String mEmail, String mPassword) {
         //
         // Maak een JSON object met username en password. Dit object sturen we mee
         // als request body (zoals je ook met Postman hebt gedaan)
         // slash \ zorgt ervoor dat de volgende accolade niet wordt gezien als einde van de string.
         //
-        String body = "{\"email\":\"" + email + "\",\"password\":\"" + password + "\"}";
+
+        String body = "{\"email\":\"" + mEmail + "\",\"password\":\"" + mPassword + "\"}";
         Log.i(TAG, "handleRegister - body = " + body);
 
         try {
@@ -94,6 +95,7 @@ public class RegisterActivity extends AppCompatActivity {
                             // het token in SharedPreferences op te slaan. Op die manier
                             // is het token tussen app-stop en -herstart beschikbaar -
                             // totdat het token expired.
+
 
                             // Start the login activity, and close the register activity
                             Intent login = new Intent(getApplicationContext(), LoginActivity.class);
@@ -117,6 +119,7 @@ public class RegisterActivity extends AppCompatActivity {
 
             // Access the RequestQueue through your singleton class.
             VolleyRequestQueue.getInstance(this).addToRequestQueue(jsObjRequest);
+
         } catch (JSONException e) {
             txtRegisterErrorMsg.setText(e.getMessage());
             // e.printStackTrace();
