@@ -56,7 +56,7 @@ public class RegisterActivity extends AppCompatActivity {
         editTextPassword = (EditText) findViewById(R.id.textEditCustomerPassword);
         txtRegisterErrorMsg = (TextView) findViewById(R.id.txtLoginErrorMessage);
 
-        btnRegister = (Button) findViewById(R.id.btnLogin);
+        btnRegister = (Button) findViewById(R.id.btnRegister);
         btnRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -64,7 +64,7 @@ public class RegisterActivity extends AppCompatActivity {
                 mPassword = editTextPassword.getText().toString();
                 txtRegisterErrorMsg.setText("");
 
-                // TODO Checken of username en password niet leeg zijn
+                // Cust Checken of username en password niet leeg zijn
 
                 handleRegister(mEmail, mPassword);
             }
@@ -87,34 +87,20 @@ public class RegisterActivity extends AppCompatActivity {
 
                         @Override
                         public void onResponse(JSONObject response) {
-                            // Succesvol response - dat betekent dat we een geldig token hebben.
-                            // txtLoginErrorMsg.setText("Response: " + response.toString());
+                            // Succesvol response - dat betekent dat we een geldig token hebben.;
                             displayMessage("Succesvol geregistreerd!");
 
                             // We hebben nu het token. We kiezen er hier voor om
                             // het token in SharedPreferences op te slaan. Op die manier
                             // is het token tussen app-stop en -herstart beschikbaar -
                             // totdat het token expired.
-                            try {
-                                String token = response.getString("token");
 
-                                Context context = getApplicationContext();
-                                SharedPreferences sharedPref = context.getSharedPreferences(
-                                        getString(R.string.preference_file_key), Context.MODE_PRIVATE);
-                                SharedPreferences.Editor editor = sharedPref.edit();
-                                editor.putString(getString(R.string.saved_token), token);
-                                editor.commit();
+                            // Start the login activity, and close the register activity
+                            Intent login = new Intent(getApplicationContext(), LoginActivity.class);
+                            startActivity(login);
+                            // Close the current activity
+                            finish();
 
-                                // Start the login activity, and close the register activity
-                                Intent login = new Intent(getApplicationContext(), LoginActivity.class);
-                                startActivity(login);
-                                // Close the current activity
-                                finish();
-
-                            } catch (JSONException e) {
-                                // e.printStackTrace();
-                                Log.e(TAG, e.getMessage());
-                            }
                         }
                     }, new Response.ErrorListener() {
 

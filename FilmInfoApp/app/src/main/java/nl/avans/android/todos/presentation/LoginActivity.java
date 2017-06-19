@@ -60,11 +60,9 @@ public class LoginActivity extends AppCompatActivity {
 
         linkRegister.setOnClickListener(new View.OnClickListener() {
 
-            @Override
             public void onClick(View v) {
-                Intent newCustomer = new Intent(getApplicationContext(), CustomerEditActivity.class);
-                // We receive a ToDo object to be stored via the API.
-                startActivityForResult( newCustomer, MY_REQUEST_CODE );
+                Intent register = new Intent(getApplicationContext(), RegisterActivity.class);
+                startActivity(register);
             }
         });
 
@@ -76,8 +74,7 @@ public class LoginActivity extends AppCompatActivity {
                 mPassword = editTextPassword.getText().toString();
                 txtLoginErrorMsg.setText("");
 
-                // TODO Checken of username en password niet leeg zijn
-
+                // Checken of username en password niet leeg zijn
                 handleLogin(mUsername, mPassword);
             }
         });
