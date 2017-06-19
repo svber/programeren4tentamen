@@ -27,21 +27,33 @@ router.post('/login', function(req, res) {
     var username = req.body.username;
     var password = req.body.password;
 
+    //email(username) en password uit de database halen
+    db.query('SELECT `email`, `password` FROM `customer` WHERE `email` = "'+username+'"', function(error, rows, fields) {
+        if (error) {
+           console.dir(error);
+        } else {
+            console.log(rows);
+            //var result = JSON.parse(rows);
+            //console.log(result)
+            var dbUsername = rows[0].email;
+            var dbPassword = rows[0].password
+
+            if (username == dbUsername && password == dbPassword) {
+                var token = auth.encodeToken(username);
+                res.status(200).json({"token": token,});
+            } else {
+            console.log('Input: username = ' + username + ', password = ' + password);
+            res.status(401).json({ "error": "Invalid credentials, bye" })
+            }
+        };
+    });
     // Dit is een dummy-user - die haal je natuurlijk uit de database.
     // Momenteel zetten we ze als environment variabelen. (Ook op Heroku!)
     var _dummy_username = process.env.APP_USERNAME || "username";
     var _dummy_password = process.env.APP_PASSWORD || "test";
 
     // Kijk of de gegevens matchen. Zo ja, dan token genereren en terugsturen.
-    if (username == _dummy_username && password == _dummy_password) {
-        var token = auth.encodeToken(username);
-        res.status(200).json({
-            "token": token,
-        });
-    } else {
-        console.log('Input: username = ' + username + ', password = ' + password);
-        res.status(401).json({ "error": "Invalid credentials, bye" })
-    }
+
 
 });
 
