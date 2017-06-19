@@ -28,7 +28,7 @@ router.post('/login', function(req, res) {
     var password = req.body.password;
 
     //email(username) en password uit de database halen
-    db.query('SELECT `email`, `password` FROM `customer` WHERE `customer_id` = 2', function(error, rows, fields) {
+    db.query('SELECT `email`, `password` FROM `customer` WHERE `email` = "'+username+'"', function(error, rows, fields) {
         if (error) {
            console.dir(error);
         } else {
