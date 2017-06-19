@@ -33,15 +33,14 @@ import nl.avans.android.todos.service.VolleyRequestQueue;
 //import com.example.matthijs.eindopdrachtpr4.service.Config;
 //import com.example.matthijs.eindopdrachtpr4.service.VolleyRequestQueue;
 
-public class LoginActivity extends AppCompatActivity {
+public class RegisterActivity extends AppCompatActivity {
 
-    private EditText editTextUsername;
+    private EditText editTextEmail;
     private EditText editTextPassword;
-    private TextView txtLoginErrorMsg;
-    private TextView linkRegister;
-    private Button btnLogin;
+    private TextView txtRegisterErrorMsg;
+    private Button btnRegister;
 
-    private String mUsername;
+    private String mEmail;
     private String mPassword;
 
     public final String TAG = this.getClass().getSimpleName();
@@ -51,57 +50,46 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
+        setContentView(R.layout.activity_film_edit);
 
-        editTextUsername = (EditText) findViewById(R.id.edittextUsername);
-        editTextPassword = (EditText) findViewById(R.id.edittextPassword);
-        txtLoginErrorMsg = (TextView) findViewById(R.id.txtLoginErrorMessage);
-        linkRegister = (TextView) findViewById(R.id.link_to_register);
+        editTextEmail = (EditText) findViewById(R.id.textEditCustomerEmail);
+        editTextPassword = (EditText) findViewById(R.id.textEditCustomerPassword);
+        txtRegisterErrorMsg = (TextView) findViewById(R.id.txtLoginErrorMessage);
 
-        linkRegister.setOnClickListener(new View.OnClickListener() {
-
+        btnRegister = (Button) findViewById(R.id.btnLogin);
+        btnRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent newCustomer = new Intent(getApplicationContext(), CustomerEditActivity.class);
-                // We receive a ToDo object to be stored via the API.
-                startActivityForResult( newCustomer, MY_REQUEST_CODE );
-            }
-        });
-
-        btnLogin = (Button) findViewById(R.id.btnLogin);
-        btnLogin.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mUsername = editTextUsername.getText().toString();
+                mEmail = editTextEmail.getText().toString();
                 mPassword = editTextPassword.getText().toString();
-                txtLoginErrorMsg.setText("");
+                txtRegisterErrorMsg.setText("");
 
                 // TODO Checken of username en password niet leeg zijn
 
-                handleLogin(mUsername, mPassword);
+                handleRegister(mEmail, mPassword);
             }
         });
     }
 
-    private void handleLogin(String username, String password) {
+    private void handleRegister(String email, String password) {
         //
         // Maak een JSON object met username en password. Dit object sturen we mee
         // als request body (zoals je ook met Postman hebt gedaan)
         // slash \ zorgt ervoor dat de volgende accolade niet wordt gezien als einde van de string.
         //
-        String body = "{\"username\":\"" + username + "\",\"password\":\"" + password + "\"}";
+        String body = "{\"email\":\"" + email + "\",\"password\":\"" + password + "\"}";
         Log.i(TAG, "handleLogin - body = " + body);
 
         try {
             JSONObject jsonBody = new JSONObject(body);
             JsonObjectRequest jsObjRequest = new JsonObjectRequest
-                    (Request.Method.POST, Config.URL_LOGIN, jsonBody, new Response.Listener<JSONObject>() {
+                    (Request.Method.POST, Config.URL_CUSTOMERS, jsonBody, new Response.Listener<JSONObject>() {
 
                         @Override
                         public void onResponse(JSONObject response) {
                             // Succesvol response - dat betekent dat we een geldig token hebben.
                             // txtLoginErrorMsg.setText("Response: " + response.toString());
-                            displayMessage("Succesvol ingelogd!");
+                            displayMessage("Succesvol geregistreerd!");
 
                             // We hebben nu het token. We kiezen er hier voor om
                             // het token in SharedPreferences op te slaan. Op die manier
@@ -117,9 +105,9 @@ public class LoginActivity extends AppCompatActivity {
                                 editor.putString(getString(R.string.saved_token), token);
                                 editor.commit();
 
-                                // Start the main activity, and close the login activity
-                                Intent main = new Intent(getApplicationContext(), MainActivity.class);
-                                startActivity(main);
+                                // Start the login activity, and close the register activity
+                                Intent login = new Intent(getApplicationContext(), LoginActivity.class);
+                                startActivity(login);
                                 // Close the current activity
                                 finish();
 
@@ -144,7 +132,7 @@ public class LoginActivity extends AppCompatActivity {
             // Access the RequestQueue through your singleton class.
             VolleyRequestQueue.getInstance(this).addToRequestQueue(jsObjRequest);
         } catch (JSONException e) {
-            txtLoginErrorMsg.setText(e.getMessage());
+            txtRegisterErrorMsg.setText(e.getMessage());
             // e.printStackTrace();
         }
         return;
@@ -169,7 +157,7 @@ public class LoginActivity extends AppCompatActivity {
             }
         } else if(error instanceof com.android.volley.NoConnectionError) {
             Log.e(TAG, "handleErrorResponse: server was niet bereikbaar");
-            txtLoginErrorMsg.setText(getString(R.string.error_server_offline));
+            txtRegisterErrorMsg.setText(getString(R.string.error_server_offline));
         } else {
             Log.e(TAG, "handleErrorResponse: error = " + error);
         }

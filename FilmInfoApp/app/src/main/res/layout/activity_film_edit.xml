@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:padding="16dp"
     android:orientation="vertical"
-    tools:context="nl.avans.android.todos.presentation.FilmEditActivity">
+    tools:context="nl.avans.android.todos.presentation.CustomerEditActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -20,11 +20,11 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="25dip"
-            android:text="First name"
+            android:text="Email"
             android:textColor="#372c24" />
 
         <EditText
-            android:id="@+id/textEditFilmTitle"
+            android:id="@+id/textEditCustomerEmail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="12dp"
@@ -35,27 +35,11 @@
         <TextView
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:text="Last name"
+            android:text="Password"
             android:textColor="#372c24" />
 
         <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="16dp"
-            android:layout_marginEnd="25dip"
-            android:layout_gravity="top"
-            android:inputType="textMultiLine"
-            android:id="@+id/textEditFilmContents"/>
-
-        <TextView
-            android:id="@+id/textView2"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:text="Email"
-            android:textColor="#372c24" />
-
-        <EditText
-            android:id="@+id/textEditFilmEmail"
+            android:id="@+id/textEditCustomerPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="top"
@@ -63,14 +47,15 @@
             android:inputType="textMultiLine"
             android:textSize="16dp" />
 
-    </LinearLayout>
+        <Button
+            android:id="@+id/btnRegister"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="130dip"
+            android:height="60dip"
+            android:text="Register" />
 
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fabSaveNewFilm"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
-        android:layout_margin="@dimen/fab_margin"
-        android:src="@drawable/ic_done_white_48dp" />
+
+    </LinearLayout>
 
 </android.support.design.widget.CoordinatorLayout>

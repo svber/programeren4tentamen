@@ -14,18 +14,21 @@ public class Customer {
     private String lastname;
     private String email;
     private DateTime createdAt;
+    private String password;
 
-    public Customer(String firstname, String lastname, String email) {
+    public Customer(String email, String password) {
         this.firstname = firstname;
         this.lastname = lastname;
+        this.password = null;
         this.email = null;
         this.createdAt = new DateTime();
     }
 
-    public Customer(String firstname, String lastname, String email, DateTime createdAt) {
+    public Customer(String firstname, String lastname, String email, String password,DateTime createdAt) {
         this.firstname = firstname;
         this.lastname = lastname;
         this.email = email;
+        this.password = password;
         this.createdAt = createdAt;
     }
 
@@ -61,13 +64,19 @@ public class Customer {
         this.createdAt = createdAt;
     }
 
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
     @Override
     public String toString() {
         return "Customer{" +
-                "firstname='" + firstname + '\'' +
-                ", lastname='" + lastname + '\'' +
-                ", email='" + email + '\'' +
-                ", createdAt=" + createdAt +
+                "email='" + email + '\'' +
+                ", password='" + password +
                 '}';
     }
 }

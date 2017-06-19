@@ -22,8 +22,10 @@ import android.widget.ListView;
 import android.widget.Toast;
 import java.util.ArrayList;
 import nl.avans.android.todos.R;
+import nl.avans.android.todos.domain.Customer;
 import nl.avans.android.todos.domain.Film;
 import nl.avans.android.todos.domain.FilmAdapter;
+import nl.avans.android.todos.service.CustomerRequest;
 import nl.avans.android.todos.service.FilmRequest;
 
 public class MainActivity extends AppCompatActivity
@@ -62,7 +64,7 @@ public class MainActivity extends AppCompatActivity
             fab.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Intent newCustomer = new Intent(getApplicationContext(), FilmEditActivity.class);
+                    Intent newCustomer = new Intent(getApplicationContext(), CustomerEditActivity.class);
                     // We receive a ToDo object to be stored via the API.
                     startActivityForResult( newCustomer, MY_REQUEST_CODE );
                 }
@@ -274,6 +276,16 @@ public class MainActivity extends AppCompatActivity
     private void getFilms(){
         FilmRequest request = new FilmRequest(getApplicationContext(), this);
         request.handleGetAllFilms();
+    }
+    /**
+     * Start the activity to POST a new ToDo to the server.
+     * @param customer
+     */
+
+
+    private void postCustomer(Customer customer){
+        CustomerRequest request = new CustomerRequest(getApplicationContext(), (CustomerRequest.CustomerListener) this);
+        request.handlePostCustomer(customer);
     }
 
     /**

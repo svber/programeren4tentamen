@@ -117,7 +117,7 @@ public class CustomerRequest {
             // Maak een JSON object met username en password. Dit object sturen we mee
             // als request body (zoals je ook met Postman hebt gedaan)
             //
-            String body = "{\"firstname\":\"" + newCustomer.getFirstname() + "\",\"lastname\":\"" + newCustomer.getLastname() + "\",\"email\":\"" + newCustomer.getEmail()+ "\"}";
+            String body = "{\"email\":\"" + newCustomer.getEmail() + "\",\"password\":\"" + newCustomer.getPassword() + "\"}";
 
             try {
                 JSONObject jsonBody = new JSONObject(body);
