@@ -24,7 +24,7 @@ Voorbeeld: /api/v1/films?offset=50&count=20 retourneert 20 films vanaf index 50.
         if (error) {
             response.status(401).json(error);
         } else {
-            response.status(200).json({ result: rows });
+            response.status(200).json(rows);
         };
     });
 });
@@ -81,7 +81,7 @@ router.post('/rentals/:userid/:inventoryid', function(request, response){
     
     response.contentType('application/json');
 
-    db.query('INSERT INTO `rental`(`rental_date`, `inventory_id`, `customer_id`, `return_date`, `staff_id`) VALUES (CURRENT_TIMESTAMP,'+inventory_id+','+customer_id+',"'+return_date+'",'+staff_id+')', function(error, rows, fields) {
+    db.query('INSERT INTO `rental`(`rental_date`, `inventory_id`, `customer_id`, `staff_id`) VALUES (CURRENT_TIMESTAMP,'+inventory_id+','+customer_id+','+staff_id+')', function(error, rows, fields) {
         if (error) {
             response.status(401).json(error);
         } else {
