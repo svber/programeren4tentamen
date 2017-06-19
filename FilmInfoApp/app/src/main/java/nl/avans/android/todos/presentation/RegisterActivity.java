@@ -54,7 +54,7 @@ public class RegisterActivity extends AppCompatActivity {
 
         editTextEmail = (EditText) findViewById(R.id.textEditCustomerEmail);
         editTextPassword = (EditText) findViewById(R.id.textEditCustomerPassword);
-        txtRegisterErrorMsg = (TextView) findViewById(R.id.txtLoginErrorMessage);
+        //txtRegisterErrorMsg = (TextView) findViewById(R.id.txtLoginErrorMessage);
 
         btnRegister = (Button) findViewById(R.id.btnRegister);
         btnRegister.setOnClickListener(new View.OnClickListener() {
@@ -62,7 +62,7 @@ public class RegisterActivity extends AppCompatActivity {
             public void onClick(View v) {
                 mEmail = editTextEmail.getText().toString();
                 mPassword = editTextPassword.getText().toString();
-                txtRegisterErrorMsg.setText("");
+                //txtRegisterErrorMsg.setText("");
 
                 // Cust Checken of username en password niet leeg zijn
 
