@@ -4,8 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="16dp"
+    android:background="@color/colorAccent"
     android:orientation="vertical"
+    android:padding="16dp"
     tools:context="nl.avans.android.todos.presentation.CustomerEditActivity">
 
     <LinearLayout
@@ -53,7 +54,9 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="130dip"
             android:height="60dip"
-            android:text="Register" />
+            android:background="@android:color/background_light"
+            android:text="Registreer nu"
+            android:textStyle="bold" />
 
 
     </LinearLayout>
