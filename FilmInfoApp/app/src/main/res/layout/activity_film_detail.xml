@@ -4,8 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="16dp"
+    android:background="@color/colorAccent"
     android:orientation="vertical"
+    android:padding="16dp"
     tools:context="nl.avans.android.todos.presentation.FilmDetailActivity">
 
     <LinearLayout
@@ -15,18 +16,18 @@
         android:orientation="vertical">
 
         <TextView
+            android:id="@+id/textDetailFilmTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="18dp"
             android:layout_marginBottom="12dp"
-            android:id="@+id/textDetailFilmTitle"/>
+            android:textSize="18dp" />
 
         <TextView
+            android:id="@+id/textDetailFilmContents"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="16dp"
             android:layout_gravity="top"
-            android:id="@+id/textDetailFilmContents"/>
+            android:textSize="16dp" />
 
     </LinearLayout>
 
@@ -36,6 +37,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
         android:layout_margin="@dimen/fab_margin"
+        app:backgroundTint="@android:color/background_dark"
         app:srcCompat="@android:drawable/ic_dialog_email" />
 
 </android.support.design.widget.CoordinatorLayout>

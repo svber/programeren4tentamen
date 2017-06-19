@@ -7,19 +7,19 @@
     android:background="@color/colorAccent"
     tools:context="nl.avans.android.todos.presentation.LoginActivity">
 
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <LinearLayout
         android:layout_width="368dp"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:padding="25dip"
         tools:layout_editor_absoluteX="8dp"
-        tools:layout_editor_absoluteY="0dp">
+        tools:layout_editor_absoluteY="1dp">
 
         <!--  Username Label -->
         <TextView
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:text="Username"
+            android:text="Username / Emailadres"
             android:textColor="#372c24" />
 
         <EditText
@@ -52,7 +52,10 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="130dip"
             android:height="60dip"
-            android:text="Login" />
+            android:backgroundTint="@android:color/background_light"
+            android:elevation="13dp"
+            android:text="Login"
+            android:textStyle="bold" />
 
         <!-- Link to Registration Screen -->
         <TextView
@@ -62,9 +65,12 @@
             android:layout_marginBottom="40dip"
             android:layout_marginTop="40dip"
             android:gravity="center"
-            android:text="New here? Register here"
-            android:textColor="#0b84aa"
-            android:textSize="20dip" />
+            android:text="Geen account? Registreer hier"
+            android:textAlignment="center"
+            android:textAllCaps="false"
+            android:textColor="@android:color/black"
+            android:textSize="20dip"
+            android:textStyle="italic" />
 
         <TextView
             android:id="@+id/txtLoginErrorMessage"
