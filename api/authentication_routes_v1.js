@@ -64,10 +64,12 @@ of je krijgt een duidelijke foutmelding
 */
 console.dir(request.body);
 
-    var customer = request.body;
+    var email = req.body.email;
+    var password = req.body.password;
+
     var query = {
         sql: 'INSERT INTO `customer`(`email`, `password`) VALUES (?, ?)',
-        values: [customer.email, customer.password],
+        values: [email, password],
         
     };
 

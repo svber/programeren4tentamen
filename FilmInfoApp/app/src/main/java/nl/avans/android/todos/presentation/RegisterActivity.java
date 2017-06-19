@@ -78,7 +78,7 @@ public class RegisterActivity extends AppCompatActivity {
         // slash \ zorgt ervoor dat de volgende accolade niet wordt gezien als einde van de string.
         //
         String body = "{\"email\":\"" + email + "\",\"password\":\"" + password + "\"}";
-        Log.i(TAG, "handleLogin - body = " + body);
+        Log.i(TAG, "handleRegister - body = " + body);
 
         try {
             JSONObject jsonBody = new JSONObject(body);
