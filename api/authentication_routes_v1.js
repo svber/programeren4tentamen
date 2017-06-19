@@ -35,8 +35,9 @@ router.post('/login', function(req, res) {
             console.log(rows);
             //var result = JSON.parse(rows);
             //console.log(result)
-            var dbUsername = rows[0].email;
-            var dbPassword = rows[0].password
+            try{
+                var dbUsername = rows[0].email;
+                var dbPassword = rows[0].password
 
             if (username == dbUsername && password == dbPassword) {
                 var token = auth.encodeToken(username);
@@ -44,6 +45,9 @@ router.post('/login', function(req, res) {
             } else {
             console.log('Input: username = ' + username + ', password = ' + password);
             res.status(401).json({ "error": "Invalid credentials, bye" })
+            }
+            } catch(e){
+                res.status(401).json({ "error": "Invalid credentials, bye" })
             }
         };
     });
@@ -62,9 +66,9 @@ console.dir(request.body);
 
     var customer = request.body;
     var query = {
-        sql: 'INSERT INTO `customer`(`first_name`, `last_name`, `email`) VALUES (?, ?, ?)',
-        values: [customer.first_name, customer.last_name, customer.email],
-        timeout: 2000 // 2secs
+        sql: 'INSERT INTO `customer`(`email`, `password`) VALUES (?, ?)',
+        values: [customer.email, customer.password],
+        
     };
 
     console.dir(customer);
