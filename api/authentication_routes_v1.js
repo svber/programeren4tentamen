@@ -64,8 +64,8 @@ of je krijgt een duidelijke foutmelding
 */
 console.dir(request.body);
 
-    var email = req.body.email;
-    var password = req.body.password;
+    var email = request.body.email;
+    var password = request.body.password;
 
     var query = {
         sql: 'INSERT INTO `customer`(`email`, `password`) VALUES (?, ?)',
