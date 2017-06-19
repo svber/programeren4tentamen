@@ -16,7 +16,7 @@ Geeft alle informatie van de gevraagde films. Offset en count kunnen als opties 
 Voorbeeld: /api/v1/films?offset=50&count=20 retourneert 20 films vanaf index 50.
 */
     var offset = request.query.offset || 0;
-    var count = request.query.count || 5;
+    var count = request.query.count || 10;
 
     response.contentType('application/json');
 
