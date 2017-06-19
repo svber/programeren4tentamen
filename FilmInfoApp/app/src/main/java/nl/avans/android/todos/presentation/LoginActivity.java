@@ -16,8 +16,6 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import org.json.JSONException;
-
 import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.NetworkResponse;
 import com.android.volley.Request;
@@ -25,7 +23,9 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 
+import org.json.JSONException;
 import org.json.JSONObject;
+
 import nl.avans.android.todos.R;
 import nl.avans.android.todos.service.Config;
 import nl.avans.android.todos.service.VolleyRequestQueue;
@@ -38,7 +38,7 @@ public class LoginActivity extends AppCompatActivity {
     private EditText editTextUsername;
     private EditText editTextPassword;
     private TextView txtLoginErrorMsg;
-    private TextView linkRegister;
+    private Button btnRegister;
     private Button btnLogin;
 
     private String mUsername;
@@ -56,15 +56,12 @@ public class LoginActivity extends AppCompatActivity {
         editTextUsername = (EditText) findViewById(R.id.edittextUsername);
         editTextPassword = (EditText) findViewById(R.id.edittextPassword);
         txtLoginErrorMsg = (TextView) findViewById(R.id.txtLoginErrorMessage);
-        linkRegister = (TextView) findViewById(R.id.link_to_register);
+        btnRegister = (Button) findViewById(R.id.btnRegister);
 
-        linkRegister.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                Intent newCustomer = new Intent(getApplicationContext(), CustomerEditActivity.class);
-                // We receive a ToDo object to be stored via the API.
-                startActivityForResult( newCustomer, MY_REQUEST_CODE );
+        btnRegister.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), RegisterActivity.class);
+                startActivity(intent);
             }
         });
 
