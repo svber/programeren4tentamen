@@ -47,6 +47,7 @@ public class FilmDetailActivity extends AppCompatActivity {
 
     private int staff_id;
     private String staff_id_str;
+    private String Stoken;
 
     public final String TAG = this.getClass().getSimpleName();
 
@@ -54,6 +55,11 @@ public class FilmDetailActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_film_detail);
+
+        Context context = getApplicationContext();
+        SharedPreferences sharedPref = context.getSharedPreferences(getString(R.string.preference_file_key), Context.MODE_PRIVATE);
+        Stoken = sharedPref.getString("saved_token", "geen token");
+
 
         textTitle = (TextView) findViewById(R.id.textDetailFilmTitle);
         textContents = (TextView) findViewById(R.id.textDetailFilmContents);
@@ -67,9 +73,6 @@ public class FilmDetailActivity extends AppCompatActivity {
             public void onClick(View v) {
                 staff_id_str = staff_id_text.getText().toString();
                 staff_id = Integer.parseInt(staff_id_str);
-                Context context = getApplicationContext();
-                SharedPreferences sharedPref = context.getSharedPreferences(getString(R.string.preference_file_key), Context.MODE_PRIVATE);
-                String Stoken = sharedPref.getString("saved_token", "geen token");
 
                 if (tokenAvailable()){
                     handleRental(staff_id);
@@ -185,7 +188,7 @@ public class FilmDetailActivity extends AppCompatActivity {
         Context context = getApplicationContext();
         SharedPreferences sharedPref = context.getSharedPreferences(
                 getString(R.string.preference_file_key), Context.MODE_PRIVATE);
-        String Stoken = sharedPref.getString(getString(R.string.saved_token), "dummy default token");
+        //String Stoken = sharedPref.getString(getString(R.string.saved_token), "dummy default token");
         if (Stoken != null && !Stoken.equals("dummy default token")) {
             result = true;
         }
