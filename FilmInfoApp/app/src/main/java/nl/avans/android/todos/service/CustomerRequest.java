@@ -7,29 +7,29 @@ package nl.avans.android.todos.service;
 
 
 import android.content.Context;
-import android.content.SharedPreferences;
-import android.util.Base64;
-import android.util.Log;
+        import android.content.SharedPreferences;
+        import android.util.Base64;
+        import android.util.Log;
 
-import com.android.volley.AuthFailureError;
-import com.android.volley.DefaultRetryPolicy;
-import com.android.volley.NetworkResponse;
-import com.android.volley.Request;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonObjectRequest;
+        import com.android.volley.AuthFailureError;
+        import com.android.volley.DefaultRetryPolicy;
+        import com.android.volley.NetworkResponse;
+        import com.android.volley.Request;
+        import com.android.volley.Response;
+        import com.android.volley.VolleyError;
+        import com.android.volley.toolbox.JsonObjectRequest;
 
-import org.json.JSONException;
-import org.json.JSONObject;
+        import org.json.JSONException;
+        import org.json.JSONObject;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
+        import java.util.ArrayList;
+        import java.util.HashMap;
+        import java.util.Map;
 
-import nl.avans.android.todos.R;
-import nl.avans.android.todos.domain.Customer;
-import nl.avans.android.todos.domain.Film;
-import nl.avans.android.todos.domain.FilmMapper;
+        import nl.avans.android.todos.R;
+        import nl.avans.android.todos.domain.Customer;
+        import nl.avans.android.todos.domain.Film;
+        import nl.avans.android.todos.domain.FilmMapper;
 
 /**
  * Deze class handelt requests naar de API server af. De JSON objecten die we terug krijgen

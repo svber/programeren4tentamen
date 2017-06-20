@@ -274,14 +274,14 @@ public class MainActivity extends AppCompatActivity
     }
 
     /**
-     * Start the activity to GET all ToDos from the server.
+     * Start the activity to GET all Films from the server.
      */
     private void getFilms(){
         FilmRequest request = new FilmRequest(getApplicationContext(), this);
         request.handleGetAllFilms();
     }
     /**
-     * Start the activity to POST a new ToDo to the server.
+     * Start the activity to POST a new Customer to the server.
      * @param customer
      */
 
@@ -292,7 +292,7 @@ public class MainActivity extends AppCompatActivity
     }
 
     /**
-     * Start the activity to POST a new ToDo to the server.
+     * Start the activity to POST a new Film to the server.
      * @param film
      */
     private void postFilm(Film film){
