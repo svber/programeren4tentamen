@@ -7,12 +7,9 @@ package nl.avans.android.todos.service;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.util.Base64;
 import android.util.Log;
 
 import com.android.volley.AuthFailureError;
-import com.android.volley.DefaultRetryPolicy;
-import com.android.volley.NetworkResponse;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
@@ -28,6 +25,8 @@ import java.util.Map;
 import nl.avans.android.todos.R;
 import nl.avans.android.todos.domain.Film;
 import nl.avans.android.todos.domain.FilmMapper;
+
+import static nl.avans.android.todos.presentation.MainActivity.nummer;
 
 /**
  * Deze class handelt requests naar de API server af. De JSON objecten die we terug krijgen
@@ -67,7 +66,7 @@ public class FilmRequest {
 
             Log.i(TAG, "Token gevonden, we gaan het request uitvoeren");
             JsonObjectRequest jsObjRequest = new JsonObjectRequest
-                    (Request.Method.GET, Config.URL_FILMS, null, new Response.Listener<JSONObject>() {
+                    (Request.Method.GET, "https://programeren4tentamen.herokuapp.com/api/v1/films/?offset="+ nummer +"&count=10", null, new Response.Listener<JSONObject>() {
 
                         @Override
                         public void onResponse(JSONObject response) {
