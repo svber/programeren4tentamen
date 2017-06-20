@@ -48,6 +48,35 @@ informatie
     });
 });
 
+router.get('/rentals/exemplaren/:filmid', function(request, response){
+
+    var film_id = request.params.filmid;
+
+    response.contentType('application/json');
+
+    db.query('SELECT  COUNT(inventory.film_id) FROM inventory WHERE film_id = ?', [film_id], function(error, rows, fields) {
+        if (error) {
+            response.status(401).json(error);
+        } else {
+            response.status(200).json({ result: rows });
+        };
+    });
+});
+
+router.get('/rentals/uitgeleend/:filmid', function(request, response){
+
+    var film_id = request.params.filmid;
+
+    response.contentType('application/json');
+
+    db.query('SELECT  COUNT(inventory.film_id) FROM inventory LEFT JOIN rental ON inventory.inventory_id = rental.inventory_id WHERE film_id = ? AND rental.return_date > CURRENT_TIMESTAMP', [film_id], function(error, rows, fields) {
+        if (error) {
+            response.status(401).json(error);
+        } else {
+            response.status(200).json({ result: rows });
+        };
+    });
+});
 
 router.get('/rentals/:userid', function(request, response){
 
@@ -62,8 +91,6 @@ router.get('/rentals/:userid', function(request, response){
             response.status(200).json({ result: rows });
         };
     });
-
-
 });
 
 router.post('/rentals/:userid/:inventoryid', function(request, response){

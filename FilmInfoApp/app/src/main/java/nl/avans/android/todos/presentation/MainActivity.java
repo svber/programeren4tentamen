@@ -18,6 +18,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 import java.util.ArrayList;
@@ -46,6 +47,7 @@ public class MainActivity extends AppCompatActivity
     private ListView listViewFilms;
     private BaseAdapter filmAdapter;
     private ArrayList<Film> films = new ArrayList<>();
+    private Button button;
     public static int nummer = 0;
 
 
