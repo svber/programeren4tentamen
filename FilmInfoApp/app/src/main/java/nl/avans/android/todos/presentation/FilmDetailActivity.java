@@ -5,20 +5,17 @@ package nl.avans.android.todos.presentation;
  */
 
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
-//import com.example.matthijs.eindopdrachtpr4.R;
-//import com.example.matthijs.eindopdrachtpr4.domein.Film;
+
 import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.NetworkResponse;
 import com.android.volley.Request;
@@ -34,8 +31,11 @@ import nl.avans.android.todos.domain.Film;
 import nl.avans.android.todos.service.Config;
 import nl.avans.android.todos.service.VolleyRequestQueue;
 
-//import static com.example.matthijs.eindopdrachtpr4.presentatie.MainActivity.FILM_DATA;
 import static nl.avans.android.todos.presentation.MainActivity.FILM_DATA;
+
+//import com.example.matthijs.eindopdrachtpr4.R;
+//import com.example.matthijs.eindopdrachtpr4.domein.Film;
+//import static com.example.matthijs.eindopdrachtpr4.presentatie.MainActivity.FILM_DATA;
 
 
 public class FilmDetailActivity extends AppCompatActivity {
@@ -67,6 +67,9 @@ public class FilmDetailActivity extends AppCompatActivity {
             public void onClick(View v) {
                 staff_id_str = staff_id_text.getText().toString();
                 staff_id = Integer.parseInt(staff_id_str);
+                Context context = getApplicationContext();
+                SharedPreferences sharedPref = context.getSharedPreferences(getString(R.string.preference_file_key), Context.MODE_PRIVATE);
+                String Stoken = sharedPref.getString("saved_token", "geen token");
 
                 if (tokenAvailable()){
                     handleRental(staff_id);
@@ -182,8 +185,8 @@ public class FilmDetailActivity extends AppCompatActivity {
         Context context = getApplicationContext();
         SharedPreferences sharedPref = context.getSharedPreferences(
                 getString(R.string.preference_file_key), Context.MODE_PRIVATE);
-        String token = sharedPref.getString(getString(R.string.saved_token), "dummy default token");
-        if (token != null && !token.equals("dummy default token")) {
+        String Stoken = sharedPref.getString(getString(R.string.saved_token), "dummy default token");
+        if (Stoken != null && !Stoken.equals("dummy default token")) {
             result = true;
         }
         return result;
