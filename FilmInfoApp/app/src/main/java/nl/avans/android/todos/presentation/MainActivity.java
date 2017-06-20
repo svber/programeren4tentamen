@@ -46,6 +46,8 @@ public class MainActivity extends AppCompatActivity
     private ListView listViewFilms;
     private BaseAdapter filmAdapter;
     private ArrayList<Film> films = new ArrayList<>();
+    public static int nummer = 0;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,9 +66,9 @@ public class MainActivity extends AppCompatActivity
             fab.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Intent newCustomer = new Intent(getApplicationContext(), CustomerEditActivity.class);
-                    // We receive a ToDo object to be stored via the API.
-                    startActivityForResult( newCustomer, MY_REQUEST_CODE );
+
+                    nummer = nummer + 10;
+                    getFilms();
                 }
             });
 
@@ -83,6 +85,7 @@ public class MainActivity extends AppCompatActivity
             listViewFilms.setOnItemClickListener(this);
             filmAdapter = new FilmAdapter(this, getLayoutInflater(), films);
             listViewFilms.setAdapter(filmAdapter);
+
             //
             // We hebben een token. Je zou eerst nog kunnen valideren dat het token nog
             // geldig is; dat doen we nu niet.
